@@ -1,0 +1,45 @@
+name: Create a new release in GitHub repository
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - Documentation/RelNotes/**
+
+permissions:
+  contents: write
+
+jobs:
+  create-github-release:
+    name: Create a new release or update an existing release in the GitHub repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # OR "2" To retrieve the preceding commit.
+      - name: Get changed files
+        uses: jitterbit/get-changed-files@v1
+        id: changed-files
+        with:
+          format: 'space-delimited'
+      # Refer to https://stackoverflow.com/a/69116750 for running Kotlin scripts
+      - name: Generate the changelog
+        run: kotlin .github/scripts/generate-github-changelog.main.kts ${{ steps.changed-files.outputs.all }}
+      - name: Create the release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body_path: release-notes.txt
+          draft: false
+          prerelease: false
+#
+#      - name: Create the release
+#        uses: softprops/action-gh-release@v1
+#        with:
+#          body_path: changelog.txt
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
