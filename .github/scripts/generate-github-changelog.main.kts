@@ -13,14 +13,12 @@ import java.io.File
 // TODO: Remove me
 args.forEach(::println)
 
-val modified = args
+val modifiedRelFile = args
     .map(::File)
-    .map(File::getParent)
-    .first { "RelNotes" in it }
+    .single { "RelNotes" in it.parent }
 
-println("modified = $modified")
+println("modified = $modifiedRelFile")
 
-val inputFile = File(modified)
 val outputFile = File("release-notes.txt")
 
-inputFile.copyTo(outputFile)
+modifiedRelFile.copyTo(outputFile)
