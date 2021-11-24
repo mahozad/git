@@ -24,13 +24,13 @@ jobs:
         with:
           fetch-depth: 2  # OR "2" To retrieve the preceding commit.
       - name: Get changed files
-        uses: jitterbit/get-changed-files@v1
+        uses: tj-actions/changed-files@v11.7
         id: changed-files
         with:
-          format: 'space-delimited'
+          separator: ' '
       # Refer to https://stackoverflow.com/a/69116750 for running Kotlin scripts
       - name: Generate the changelog
-        run: kotlin .github/scripts/generate-github-changelog.main.kts ${{ steps.changed-files.outputs.all }}
+        run: kotlin .github/scripts/generate-github-changelog.main.kts ${{ steps.changed-files.outputs.all_changed_and_modified_files }}
         if: always()
       - name: Create the release
         uses: actions/create-release@v1
