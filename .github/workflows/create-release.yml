@@ -10,7 +10,7 @@ name: Create a new release in GitHub repository
 on:
   push:
     tags:
-      - Git [0-9]+.*"
+      - v[0-9]+.*"
 
 permissions:
   contents: write

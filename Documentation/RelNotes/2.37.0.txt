@@ -365,5 +365,3 @@ Fixes since v2.24
    (merge ace0f86c7f pb/clarify-line-log-doc later to maint).
    (merge 763a59e71c en/merge-recursive-oid-eq-simplify later to maint).
    (merge 4e2c4c0d4f do/gitweb-typofix-in-comments later to maint).
-
-alaki
