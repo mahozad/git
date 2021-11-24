@@ -366,4 +366,3 @@ Fixes since v2.24
    (merge 763a59e71c en/merge-recursive-oid-eq-simplify later to maint).
    (merge 4e2c4c0d4f do/gitweb-typofix-in-comments later to maint).
    (merge 421c0ffb02 jb/doc-multi-pack-idx-fix later to maint).
-   (merge f8740c586b pm/am-in-body-header-doc-update later to maint).
