@@ -18,6 +18,8 @@ val modified = args
     .map(File::getParent)
     .first { "RelNotes" in it }
 
+println("modified = $modified")
+
 val inputFile = File(modified)
 val outputFile = File("release-notes.txt")
 
