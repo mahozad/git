@@ -367,5 +367,5 @@ Fixes since v2.24
    (merge 4e2c4c0d4f do/gitweb-typofix-in-comments later to maint).
 
 
-alkai
+
 alaki
