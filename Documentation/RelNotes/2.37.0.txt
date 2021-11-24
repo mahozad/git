@@ -370,3 +370,4 @@ Fixes since v2.24
 
 alaki
 palaki
+valaki
