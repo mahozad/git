@@ -1,12 +1,20 @@
 #!/usr/bin/env kotlin
 
+/**
+ * Copies contents of the release notes file created/modified
+ * in this commit to a new file to be used by the workflow.
+ */
+
 import java.io.File
 
-val outputFile = File("release-notes.txt")
-val releaseFile = args
-    .onEach(::println)
+println("Files modified in this commit:")
+args.forEachIndexed { index, name -> println("$index- $name") }
+println("End of list")
+
+val notesFile = args
     .map(::File)
     .singleOrNull { "RelNotes" in it.parent }
 
-releaseFile?.copyTo(outputFile)
-    ?: println("No release note file change in this commit")
+notesFile
+    ?.copyTo(File("changelog.txt"))
+    ?: println("No release notes file modified in this commit")
