@@ -17,6 +17,7 @@ val modifiedRelFile = args
     .map(::File)
     .single { "RelNotes" in it.parent }
 
+// TODO: Remove me
 println("modified = $modifiedRelFile")
 
 val outputFile = File("release-notes.txt")
