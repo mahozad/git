@@ -11,6 +11,10 @@ on:
   push:
     tags:
       - v[0-9]+.*
+    branches:
+      - master
+    paths:
+      - Documentation/RelNotes/**
 
 permissions:
   contents: write
@@ -22,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 2  # OR "2" To retrieve the preceding commit.
+          fetch-depth: 2  # OR '0' To retrieve all preceding commit.
       - name: Get changed files
         uses: tj-actions/changed-files@v11.7
         id: changed-files
@@ -31,10 +35,8 @@ jobs:
       # Refer to https://stackoverflow.com/a/69116750 for running Kotlin scripts
       - name: Generate the changelog
         run: kotlin .github/scripts/generate-github-changelog.main.kts ${{ steps.changed-files.outputs.all_changed_and_modified_files }}
-        if: always()
       - name: Create the release
         uses: actions/create-release@v1
-        if: always()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -43,10 +45,3 @@ jobs:
           body_path: release-notes.txt
           draft: false
           prerelease: false
-#
-#      - name: Create the release
-#        uses: softprops/action-gh-release@v1
-#        with:
-#          body_path: changelog.txt
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
