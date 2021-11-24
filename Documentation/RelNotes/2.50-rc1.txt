@@ -1,0 +1,26 @@
+Git 2.25 Release Notes
+======================
+
+Updates since v2.24
+-------------------
+
+Backward compatibility notes
+
+
+UI, Workflows & Features
+
+ * A tutorial on object enumeration has been added.
+
+ * The branch description ("git branch --edit-description") has been
+   used to fill the body of the cover letters by the format-patch
+   command; this has been enhanced so that the subject can also be
+   filled.
+
+ * "git rebase --preserve-merges" has been marked as deprecated; this
+   release stops advertising it in the "git rebase -h" output.
+
+ * The code to generate multi-pack index learned to show (or not to
+   show) progress indicators.
+
+ * "git apply --3way" learned to honor merge.conflictStyle
+   configuration variable, like merges would.
